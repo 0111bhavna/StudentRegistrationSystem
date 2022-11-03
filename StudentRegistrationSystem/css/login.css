@@ -1,0 +1,220 @@
+﻿
+/*
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form {
+    border: 3px solid #f1f1f1;
+}
+
+input[type=text], input[type=password], input[type=email] {
+ 
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+}
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+.cancelbtn {
+
+    width:50%;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+    */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+}
+
+    .container .form-1 {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        width: 40%;
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3);
+    }
+
+.form-1 h1 {
+    text-align: center;
+    margin-top: 0.7rem;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid;
+    background: none;
+    margin: 0.9rem 2rem;
+    font-size: 1rem;
+}
+
+label {
+    margin: 0 2rem;
+}
+
+span {
+    margin: 0 2rem;
+    /*color: blue;*/
+    cursor: pointer;
+}
+
+button {
+    margin: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bolder;
+    color: #fff;
+    background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    width: 20%;
+}
+
+/* ........///Sign-Up///......... */
+
+p {
+    text-align: center;
+    font-weight: bolder;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    margin-top: 0.5rem;
+}
+
+    .icons a {
+        text-decoration: none;
+        font-size: 1rem;
+        margin: 0.2rem;
+    }
+
+    .icons .fa-facebook-f {
+        border-radius: 50%;
+        background: #5d75ab;
+        color: #fff;
+        padding: 1rem;
+    }
+
+    .icons .fa-twitter {
+        border-radius: 50%;
+        background: #1da1f2;
+        color: white;
+        padding: 1rem;
+    }
+
+    .icons .fa-google {
+        border-radius: 50%;
+        background: #ee5645;
+        color: #fff;
+        padding: 1rem;
+    }
+
+/* ....///Media query///..... */
+
+@media (max-width: 501px) {
+    html {
+        font-size: 15px;
+    }
+
+    .container .form-1 {
+        width: 300px;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+
+    .container .form-1 {
+        width: 450px;
+    }
+}
+
+@media (min-width: 765px) and (max-width: 1200px) {
+    html {
+        font-size: 18px;
+    }
+
+    .container .form-1 {
+        width: 540px;
+        height: 550px;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .container {
+        height: 100vmax;
+    }
+}
+
