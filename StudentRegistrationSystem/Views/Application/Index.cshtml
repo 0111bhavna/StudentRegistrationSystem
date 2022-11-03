@@ -1,8 +1,11 @@
+﻿
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="ApplyNow.css">
+    <link rel="stylesheet" href="~/css/ApplyNow.css">
+
+    <script type="text/javascript" src="~/Scripts/Application.js"></script>
 </head>
 <body>
 
@@ -11,7 +14,7 @@
 
             <div class="dropdown">
                 <label for="subject">Subject 1:</label>
-                <select name="subject" id="subject">
+                <select name="subject" id="subject1">
                     <option value="Maths">Maths</option>
                     <option value="English">English</option>
                     <option value="Economics">Economics</option>
@@ -19,7 +22,7 @@
                 </select>
 
                 <label for="Grade">Grade</label>
-                <select name="Grade" id="Grade">
+                <select name="Grade" id="Grade1">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -29,7 +32,7 @@
                 </select>
 
                 <label for="subject">Subject 2:</label>
-                <select name="subject" id="subject">
+                <select name="subject" id="subject2">
                     <option value="Maths">Maths</option>
                     <option value="English">English</option>
                     <option value="Economics">Economics</option>
@@ -37,7 +40,7 @@
                 </select>
 
                 <label for="Grade">Grade</label>
-                <select name="Grade" id="Grade">
+                <select name="Grade" id="Grade2">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -47,7 +50,7 @@
                 </select>
 
                 <label for="subject">Subject 3:</label>
-                <select name="subject" id="subject">
+                <select name="subject" id="subject3">
                     <option value="Maths">Maths</option>
                     <option value="English">English</option>
                     <option value="Economics">Economics</option>
@@ -55,7 +58,7 @@
                 </select>
 
                 <label for="Grade">Grade</label>
-                <select name="Grade" id="Grade">
+                <select name="Grade" id="Grade3">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -65,24 +68,11 @@
                 </select>
 
             </div>
-
-            <input type="submit" value="Submit">
-
-
-
-
-
-
-
+            <!--  <input type="submit" value="Submit">   -->
+            <p><button id="btnApply">Submit</button></p>
 
         </form>
-
-
-
     </div>
-
-
-
 </body>
 </html>
 

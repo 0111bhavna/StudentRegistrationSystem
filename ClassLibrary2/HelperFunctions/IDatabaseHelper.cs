@@ -15,5 +15,9 @@ namespace RepositoryLibrary.HelperFunctions
 
         DataTable GetData(string query);
 
+        bool InsertData(string query, List<SqlParameter> parameters);
+
+        DataTable QueryConditions(string query, List<SqlParameter> parameters);
+
     }
 }

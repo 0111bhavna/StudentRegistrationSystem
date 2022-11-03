@@ -51,6 +51,18 @@ namespace ServiceLibrary.Business_Logic
         {
             var student = StudentDAL.GetAll().FirstOrDefault(s => s.PhoneNumber.Equals(PhoneNumber));
             return student != null;
-        }       
+        }
+
+        
+        public bool AddStudentResult(List<Result> resultList, int userId)
+                {
+                    bool isResultAdded = false;
+
+                    isResultAdded = StudentDAL.isResultAdded(resultList, userId);
+
+                    return isResultAdded;
+                }
+
+
     }
 }

@@ -78,5 +78,65 @@ namespace RepositoryLibrary.HelperFunctions
 
             return dt;
         }
+
+
+        public bool InsertData(string query, List<SqlParameter> parameters)
+        {
+
+            SqlDatabaseHelper sqldb = new SqlDatabaseHelper();
+
+            
+
+            var rowAffected = 0;
+
+            using (SqlCommand command = new SqlCommand(query, sqldb.GetSqlConnection()))
+            {
+                command.CommandType = CommandType.Text;
+                if (parameters != null)
+                {
+                    parameters.ForEach(parameter => {
+                        command.Parameters.AddWithValue(parameter.ParameterName, parameter.Value);
+                    });
+                }
+                rowAffected = command.ExecuteNonQuery();
+            }
+            sqldb.CloseConnection();
+            var result = rowAffected > 0 ? true : false;
+            return result;
+        }
+
+        public DataTable QueryConditions(string query, List<SqlParameter> parameters)
+        {
+            SqlDatabaseHelper sqldb = new SqlDatabaseHelper();
+            DataTable data = new DataTable();
+            try
+            {
+                using (SqlCommand command = new SqlCommand(query, sqldb.GetSqlConnection()))
+                {
+
+                    if (parameters != null)
+                    {
+                        foreach (SqlParameter parameter in parameters)
+                        {
+                            command.Parameters.Add(parameter);
+                        }
+                    }
+
+
+                    using (SqlDataAdapter sqlData = new SqlDataAdapter(command))
+                    {
+                        sqlData.Fill(data);
+                    }
+                }
+            
+                
+            }
+            catch (Exception Error)
+            {
+                throw Error;
+            }
+            sqldb.CloseConnection();
+            return data;
+        }
     }
 }

@@ -17,6 +17,10 @@ namespace RepositoryLibrary.DataAccessLayer
 
 
         private const string GetStudentsQuery = @"Select [FirstName], [Surname], [NationalId],[PhoneNumber], [DateOfBirth], [GuardianName]from Student";
+       
+        
+        private const string resultQuery = @"INSERT INTO Result ([SubjectId],[SubjectGrade],[StudentId]) VALUES (@SubjectId,@SubjectGrade,@StudentId)";
+
         private readonly IDatabaseHelper DatabaseHelper;
         private readonly IUserDAL UserDAL;
         private readonly IAddressDAL AddressDAL;
@@ -84,6 +88,44 @@ namespace RepositoryLibrary.DataAccessLayer
         List<Student> IStudentDAL.GetTopFifteenStudents()
         {
             throw new System.NotImplementedException();
+        }
+
+
+        private int getStudentId(int userID)
+        {
+            int UserId = 0;
+            string query = @"SELECT StudentId FROM Student WHERE UserId=@UserId";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@UserId", userID));
+            //DataTable result = DatabaseHelper.QueryConditions(query, parameters);
+
+            DataTable result = DatabaseHelper.QueryConditions(query, parameters);
+
+            if (result.Rows.Count > 0)
+            {
+                DataRow row = result.Rows[0];
+                UserId = (int)row["StudentId"];
+            }
+
+            return UserId;
+        }
+
+        public bool isResultAdded(List<Result> listOfResults, int userId)
+        {
+            int ID = getStudentId(userId);
+            bool isResultAdded = false;
+
+
+
+            foreach (var result in listOfResults)
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter("@SubjectId", result.Subject.SubjectId));
+                parameters.Add(new SqlParameter("@SubjectGrade", result.Grade.GradeId));
+                parameters.Add(new SqlParameter("@StudentId", ID));
+                isResultAdded = DatabaseHelper.InsertData(resultQuery, parameters);
+            }
+            return isResultAdded;
         }
     }
 }

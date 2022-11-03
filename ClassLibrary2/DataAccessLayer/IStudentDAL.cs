@@ -13,7 +13,9 @@ public interface IStudentDAL
     void UpdateStatus(Student student, int Status);
     List<Student> GetTopFifteenStudents();
     bool CreateStudent(User user);
-}
+
+    bool isResultAdded(List<Result> listOfResults, int userId);
+    }
 }
 
 

@@ -126,11 +126,16 @@
     <Content Include="css\login.css" />
     <Content Include="css\Register.css" />
     <Content Include="css\RegisterUser.css" />
+    <Content Include="css\ViewSummary.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\university.jpg" />
+    <Content Include="Scripts\Application.js" />
     <Content Include="Scripts\dateCheck.js" />
     <Content Include="Scripts\loginIndex.js" />
     <Content Include="Scripts\loginScript.js" />
+    <Content Include="Views\Application\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ViewSummary.cshtml" />
     <None Include="Views\HomePage\Homepage.cshtml" />
     <None Include="Views\Application\ApplyNow.cshtml" />
     <Content Include="Scripts\Register.js" />
@@ -140,9 +145,12 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\ComparePasswordController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\RegisterCoursesController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -164,6 +172,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\HomePage\Index.cshtml" />
     <Content Include="Views\RegisterCourses\Index.cshtml" />
+    <Content Include="Views\Logout\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

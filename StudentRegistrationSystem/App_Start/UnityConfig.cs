@@ -2,6 +2,7 @@ using ClassLibrary2.DataAccessLayer;
 using RepositoryLibrary.DataAccessLayer;
 using RepositoryLibrary.HelperFunctions;
 using ServiceLibrary.Business_Logic;
+using ServiceLibrary.BusinessLogic;
 using ServiceLibrary.BusinessLogic.Validation;
 using System.Web.Mvc;
 using Unity;
@@ -33,6 +34,7 @@ namespace StudentRegistrationSystem
             container.RegisterType<IUserBL, UserBL>();
             container.RegisterType<IValidation, Validation>();
             container.RegisterType<IUserManagement, UserManagement>();
+            
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

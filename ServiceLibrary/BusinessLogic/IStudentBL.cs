@@ -10,5 +10,7 @@ namespace ServiceLibrary.Business_Logic
     public interface IStudentBL
     {
         bool CreateStudent(User user);
+
+        bool AddStudentResult(List<Result> result, int userId);
     }
 }

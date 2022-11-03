@@ -68,8 +68,7 @@ namespace StudentRegistrationSystem.Controllers
         {
             UserBL = userBL;
         }
-
-        // GET: Login
+    
         public ActionResult Login()
         {
             return View();
@@ -86,14 +85,19 @@ namespace StudentRegistrationSystem.Controllers
                 _url = Url.Action("HomePage", "Index");
             }
 
+
+
+           
             return Json(new
             {
                 result = IsUserValid,
                 url = _url
             });
-
+        }
+        public ActionResult LogOff()
+        {
+            return RedirectToAction("Login", "Login");
         }
     }
-
 
 }
