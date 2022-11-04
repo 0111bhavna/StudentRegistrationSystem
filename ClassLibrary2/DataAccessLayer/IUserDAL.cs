@@ -11,5 +11,6 @@ namespace RepositoryLibrary.DataAccessLayer
     {
         bool AuthenticateUser(LoginModel loginModel);
         int AddUser(User user, Role role);
+        Role? GetUserRole(int userId);
     }
 }

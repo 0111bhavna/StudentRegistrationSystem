@@ -1,29 +1,22 @@
-﻿
-$(function () {
+﻿$(function () {
     let form = document.querySelector('form');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         return false;
     });
 });
-
 function registration() {
     var url = Url.Action("Registration", "LoginRegister")
     window.location = url;
 }
-
 function login() {
-
-    //alert("ok");
     var emailAddress = $("#email").val();
     var password = $("#password").val(); 
-    //alert(emailAddress);
     var authObj = { email: emailAddress, password: password };
-
     sendData(authObj).then((response) => {
         if (response.result) {
             toastr.success("Authentication Succeed. Redirecting to relevent page.....");
-            window.location.href = '/HomePage/Index';
+            window.location.href = response.url;
         }
         else {
             toastr.error('Unable to Authenticate user');
@@ -34,9 +27,7 @@ function login() {
             toastr.error(error);
         });
 }
-
 function sendData(userCredential) {
-
     return new Promise((resolve, reject) => {
         $.ajax({
             type: "POST",

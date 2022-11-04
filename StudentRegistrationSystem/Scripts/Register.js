@@ -5,7 +5,6 @@
         return false;
     });
 });
-
 function register() {
     var Email = $("#Email").val();
     var Password = $("#Password").val();
@@ -19,13 +18,11 @@ function register() {
     var PhoneNumber = $("#PhoneNumber").val();
     var DateofBirth = $("#DateofBirth").val();
     var GuardianName = $("#GuardianName").val();
-
     var address = {
         Street: $("#Street").val(),
         City: $("#City").val(),
         Country: $("#Country").val()
     };
-
     var studentObj = {
         NationalId: $("#NationalId").val(), FirstName: $("#FirstName").val(),
         Surname: $("#Surname").val(), Address: address, PhoneNumber: PhoneNumber, DateOfBirth: DateofBirth, GuardianName: GuardianName
@@ -49,7 +46,6 @@ function register() {
         toastr.error('Unable to make request!!');
     });
 }
-
 function sendData(student) {
     return new Promise((resolve, reject) => {
         $.ajax({

@@ -1,23 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using RepositoryLibrary.Models;
+using ServiceLibrary.Business_Logic;
+using System.CodeDom;
 using System.Web;
 using System.Web.Mvc;
-using System.Data;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Web.UI.WebControls;
-using System.Reflection;
-using ServiceLibrary.Business_Logic;
-using RepositoryLibrary.Models;
-using System.Security.Policy;
-
-
+using System;
 namespace StudentRegistrationSystem.Controllers
 {
-    public class LoginController : Controller
-        
+    public static class SessionHandler
     {
+        public static int? GetUserIdFromSession()
+        {
+            int? userId = null;
+            if (HttpContext.Current.Session["UserId"]!=null)
+            {
+                userId = (int)HttpContext.Current.Session["UserId"];
+            }
+            return userId;
+        }
+        public static Role? GetRoleFromSession()
+        {
+            Role? role = null;
+            if (HttpContext.Current.Session["Role"] != null)
+            {
+                string strRole = HttpContext.Current.Session["Role"].ToString();
+                role=(Role)Enum.Parse(typeof(Role), strRole);
+            }
+            return role;
+        }
+    }
+    public class LoginController : Controller
+
+    { 
 
         /*
         string connectionstring = @"Data Source=L-PW02X092\SQLEXPRESS;Initial Catalog=""StudentRegistration SystemDb"";Integrated Security=True";
@@ -63,17 +76,14 @@ namespace StudentRegistrationSystem.Controllers
             return Json(new { result = IsUserValid, url = Url.Action("Index", "User") });*/
 
         private readonly IUserBL UserBL;
-
         public LoginController(IUserBL userBL)
         {
             UserBL = userBL;
         }
-    
         public ActionResult Login()
         {
             return View();
         }
-
         [HttpPost]
         public JsonResult Authentication(LoginModel _loginModel)
         {
@@ -82,12 +92,14 @@ namespace StudentRegistrationSystem.Controllers
             IsUserValid = UserBL.AuthenticateUser(_loginModel);
             if (IsUserValid)
             {
-                _url = Url.Action("HomePage", "Index");
+                Role role = (Role)SessionHandler.GetRoleFromSession();
+                if (role.Equals(Role.Admin))
+                    _url = Url.Action("Index", "Admin");
+                else
+                {
+                    _url = Url.Action("Index", "HomePage");
+                }
             }
-
-
-
-           
             return Json(new
             {
                 result = IsUserValid,
@@ -99,5 +111,4 @@ namespace StudentRegistrationSystem.Controllers
             return RedirectToAction("Login", "Login");
         }
     }
-
 }

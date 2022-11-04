@@ -79,14 +79,12 @@ span.psw {
     padding: 0;
     box-sizing: border-box;
 }
-
 .container {
     height: 100vh;
     margin: 0 auto;
     position: relative;
     background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
 }
-
     .container .form-1 {
         display: flex;
         flex-direction: column;
@@ -98,7 +96,6 @@ span.psw {
         width: 40%;
         box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3);
     }
-
 .form-1 h1 {
     text-align: center;
     margin-top: 0.7rem;
@@ -135,7 +132,8 @@ button {
     font-weight: bolder;
     color: #fff;
     background: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-    width: 20%;
+    width: 30%;
+   
 }
 
 /* ........///Sign-Up///......... */

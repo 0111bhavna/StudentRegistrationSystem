@@ -79,40 +79,40 @@
             <form class="form-1">
                 <h1>Registration Form</h1>
 
-                <label for="Email">Email</label>
-                <input type="email" id="Email" name="Email" onchange="EmailValidation(this);" required>
+                <label class="required" for="Email">Email</label>
+                <input type="email" id="Email" name="Email" required>
 
-                <label for="Password">Password</label>
+                <label class="required" for="Password">Password</label>
                 <input type="password" id="Password" name="psw" onchange="PasswordValidation(this, Password);" required>
 
-                <label for="ConfirmPassword">Confirm Password</label>
+                <label class="required" for="ConfirmPassword">Confirm Password</label>
                 <input type="password" name="ConfirmPassword" id="ConfirmPassword" onchange="PasswordValidation(ConfirmPassword, this);" required>
 
-                <label for="NationalId">NationalId</label>
+                <label class="required" for="NationalId">NationalId</label>
                 <input type="text" id="NationalId" name="NationalId" onchange="NationalIdValidation(this);" required>
 
-                <label for="FirstName">First Name</label>
+                <label class="required" for="FirstName">First Name</label>
                 <input type="text" id="FirstName" name="FirstName" onchange="NameValidation(this);" required>
 
-                <label for="Surname">Surname</label>
+                <label class="required" for="Surname">Surname</label>
                 <input type="text" id="Surname" name="Surname" onchange="NameValidation(this);" required>
 
-                <label for="Street">Street</label>
+                <label class="required" for="Street">Street</label>
                 <input type="text" id="Street" name="Street" onchange="AddressValidation(this);" required>
 
-                <label for="City">City</label>
+                <label class="required" for="City">City</label>
                 <input type="text" id="City" name="City" onchange="AddressValidation(this);" required>
 
-                <label for="Country">Country</label>
+                <label class="required" for="Country">Country</label>
                 <input type="text" id="Country" name="Country" onchange="AddressValidation(this);" required>
 
-                <label for="phoneNumber">Phone Number</label>
+                <label class="required" for="phoneNumber">Phone Number</label>
                 <input type="text" id="PhoneNumber" name="phoneNumber" required>
 
-                <label for="DateofBirth">Date of Birth</label>
+                <label class="required" for="DateofBirth">Date of Birth</label>
                 <input type="date" id="DateofBirth" name="DateofBirth"><br>
 
-                <label for="Guardian">Guardian Name</label>
+                <label class="required" for="Guardian">Guardian Name</label>
                 <input type="text" id="GuardianName" name="Guardian" onchange="NameValidation(this)" required>
 
                 <p><button type="submit" class="registerbtn" onclick="register()">Register</button></p>

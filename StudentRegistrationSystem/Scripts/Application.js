@@ -4,35 +4,34 @@
         e.preventDefault();
         return false;
     });
-    $("#btnApply").click(function () {
+    $("button#btnApply").click(function () {
         registerResult();
     });
 });
 
 function registerResult() {
     var resultList = [];
-
     var subjectValue1 = parseInt($("#subject1").val());
     var gradeValue1 = $("#Grade1").val();
-    const result1 = { SubjectId: subjectValue1, SubjectGrade: gradeValue1 };
+    const result1 = { Subject: { SubjectId: parseInt(subjectValue1) }, Grade: { GradeId: parseInt(gradeValue1)} };
     resultList.push(result1);
 
     var subjectValue2 = parseInt($("#subject2").val());
     var gradeValue2 = $("#Grade2").val();
-    const result2 = { SubjectId: subjectValue2, SubjectGrade: gradeValue2 };
+    const result2 = { Subject: { SubjectId: parseInt(subjectValue2) }, Grade: { GradeId: parseInt(gradeValue2) } };
     resultList.push(result2);
 
     var subjectValue3 = parseInt($("#subject3").val());
     var gradeValue3 = $("#Grade3").val();
-    const result3 = { SubjectId: subjectValue3, SubjectGrade: gradeValue3 };
+    const result3 = { Subject: { SubjectId: parseInt(subjectValue3) }, Grade: { GradeId: parseInt(gradeValue3) } };
     resultList.push(result3);
 
-    var data = { Results: resultList };
+    var data = { ResultList: resultList };
 
     CreateResult(data).then((response) => {
-        if (response.result) {
+        if (response) {
             toastr.success('Result Created Successfully');
-            window.location = response.url;
+            window.location = '/HomePage/Index';
 
         }
         else {
@@ -44,7 +43,6 @@ function registerResult() {
         console.error(error);
     });
 };
-
 function CreateResult(resultList) {
     return new Promise((resolve, reject) => {
         $.ajax({

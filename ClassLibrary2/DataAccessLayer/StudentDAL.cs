@@ -1,12 +1,10 @@
-﻿using RepositoryLibrary.HelperFunctions;
+﻿using ClassLibrary2.DataAccessLayer;
+using RepositoryLibrary.HelperFunctions;
 using RepositoryLibrary.Models;
-using System.Data.Common;
-using System.Data.SqlClient;
-using RepositoryLibrary.DataAccessLayer;
-using System.Data;
-using System.Collections.Generic;
 using System;
-using ClassLibrary2.DataAccessLayer;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace RepositoryLibrary.DataAccessLayer
 {
@@ -14,13 +12,8 @@ namespace RepositoryLibrary.DataAccessLayer
     {
         private const string CreateStudentQuery = @"Insert into Student ([StudentId], [NationalId],[FirstName],[Surname],[PhoneNumber],[DateOfBirth],[GuardianName])
                                                     values (@StudentId,@NationalId, @FirstName,@Surname,@PhoneNumber, @DateOfBirth, @GuardianName) ";
-
-
         private const string GetStudentsQuery = @"Select [FirstName], [Surname], [NationalId],[PhoneNumber], [DateOfBirth], [GuardianName]from Student";
-       
-        
-        private const string resultQuery = @"INSERT INTO Result ([SubjectId],[SubjectGrade],[StudentId]) VALUES (@SubjectId,@SubjectGrade,@StudentId)";
-
+        private const string resultQuery = @"INSERT INTO Results ([SubjectId],[GradeId],[StudentId]) VALUES (@SubjectId,@GradeId,@StudentId)";
         private readonly IDatabaseHelper DatabaseHelper;
         private readonly IUserDAL UserDAL;
         private readonly IAddressDAL AddressDAL;
@@ -65,7 +58,6 @@ namespace RepositoryLibrary.DataAccessLayer
         {
             List<Student> studentList = null;
             Student student;
-
             var dt = DatabaseHelper.GetData(GetStudentsQuery);
                 if (dt.Rows.Count > 0)
                 {
@@ -89,40 +81,29 @@ namespace RepositoryLibrary.DataAccessLayer
         {
             throw new System.NotImplementedException();
         }
-
-
         private int getStudentId(int userID)
         {
             int UserId = 0;
             string query = @"SELECT StudentId FROM Student WHERE UserId=@UserId";
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@UserId", userID));
-            //DataTable result = DatabaseHelper.QueryConditions(query, parameters);
-
             DataTable result = DatabaseHelper.QueryConditions(query, parameters);
-
             if (result.Rows.Count > 0)
             {
                 DataRow row = result.Rows[0];
                 UserId = (int)row["StudentId"];
             }
-
             return UserId;
         }
-
         public bool isResultAdded(List<Result> listOfResults, int userId)
         {
-            int ID = getStudentId(userId);
             bool isResultAdded = false;
-
-
-
             foreach (var result in listOfResults)
             {
                 List<SqlParameter> parameters = new List<SqlParameter>();
                 parameters.Add(new SqlParameter("@SubjectId", result.Subject.SubjectId));
-                parameters.Add(new SqlParameter("@SubjectGrade", result.Grade.GradeId));
-                parameters.Add(new SqlParameter("@StudentId", ID));
+                parameters.Add(new SqlParameter("@GradeId", result.Grade.GradeId));
+                parameters.Add(new SqlParameter("@StudentId", userId));
                 isResultAdded = DatabaseHelper.InsertData(resultQuery, parameters);
             }
             return isResultAdded;

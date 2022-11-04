@@ -1,10 +1,7 @@
-﻿using RepositoryLibrary.Models;
-using System;
+﻿using RepositoryLibrary.DataAccessLayer;
+using RepositoryLibrary.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RepositoryLibrary.DataAccessLayer;
 
 namespace ServiceLibrary.Business_Logic
 {
@@ -17,13 +14,10 @@ namespace ServiceLibrary.Business_Logic
         }
         public bool CreateStudent(User user)
         {
-            var isCreated = false;
-            //if (IsNIDUnique(user.Student.NationalId))
-            //{
+                var isCreated = false;
                 var hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
                 user.Password = hashedPassword;
                 isCreated = StudentDAL.CreateStudent(user);
-            //}
             return isCreated;
         }
         private bool ValidateEmailDuplication(string _email)
@@ -52,8 +46,6 @@ namespace ServiceLibrary.Business_Logic
             var student = StudentDAL.GetAll().FirstOrDefault(s => s.PhoneNumber.Equals(PhoneNumber));
             return student != null;
         }
-
-        
         public bool AddStudentResult(List<Result> resultList, int userId)
                 {
                     bool isResultAdded = false;
@@ -62,7 +54,5 @@ namespace ServiceLibrary.Business_Logic
 
                     return isResultAdded;
                 }
-
-
     }
 }
