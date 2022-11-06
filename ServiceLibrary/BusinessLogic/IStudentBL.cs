@@ -9,5 +9,7 @@ namespace ServiceLibrary.Business_Logic
         bool AddStudentResult(List<Result> result, int userId);
 
         List<Student> GetSortedStudentsByPoints();
+        bool DoesNidExist(string nationalId);
+        bool DoesPhoneNumberExist(string phoneNumber);
     }
 }

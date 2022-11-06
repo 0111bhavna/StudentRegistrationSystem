@@ -10,7 +10,7 @@ namespace RepositoryLibrary.DataAccessLayer
     public class UserDAL : IUserDAL
     {
         public const string AuthenticationQuery = @"select UserId, Password from Users where Email = @Email ";
-        public const string GetUserQuery = @"select UserId from Users where Email = @Email ";
+        public const string GetUserQuery = @"select UserId from Users where Email = @Email";
         public const string AddUserQuery = @"Insert into Users (Email, RoleId, Password) values(@Email,@RoleId,@Password)";
         public const string GetRoleQuery = @"select RoleId from Users where UserId = @UserId";
         private readonly IDatabaseHelper DatabaseHelper;
@@ -66,6 +66,17 @@ namespace RepositoryLibrary.DataAccessLayer
                 role = (Role)Enum.Parse(typeof(Role),(result.Rows[0]["RoleId"].ToString()));
             }
             return role;
+        }
+        public bool GetUserByEmail(String email)
+        {
+            bool isEmailDuplicate = false;
+         
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@Email", email));
+            DataTable result = DatabaseHelper.GetDataWithConditions(GetUserQuery, parameters);
+            if (result.Rows.Count > 0)
+                isEmailDuplicate = true;
+            return isEmailDuplicate;
         }
     }
 }

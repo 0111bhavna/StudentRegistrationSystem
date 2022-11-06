@@ -9,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace ServiceLibrary.Business_Logic
 {
@@ -32,5 +33,22 @@ namespace ServiceLibrary.Business_Logic
 
             
         }
+
+        /*
+        public static bool isValid(string number)
+        {
+            string expression = @"(^[0-9]{10}$)|(^\+[0-9]{2}\s+[0-9]
+                {2}[0-9]{8}$)|(^[0-9]{3}-[0-9]{4}-[0-9]{4}$)";
+
+            Regex re = new Regex(expression);
+
+   
+            if (re.IsMatch(number))
+                return (true);
+            else
+                return (false);
+        }
+
+        */
     }
 }

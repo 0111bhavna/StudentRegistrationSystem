@@ -20,41 +20,12 @@ namespace ServiceLibrary.Business_Logic
                 isCreated = StudentDAL.CreateStudent(user);
             return isCreated;
         }
-        private bool ValidateEmailDuplication(string _email)
-        {
-            var student = StudentDAL.GetAll().FirstOrDefault(s => s.Email.Equals(_email));
-            if (student == null)
-            {
-                return true;
-            }
-            return false;
-        }
-        private bool IsNIDUnique(string NID)
-        {
-            var student = StudentDAL.GetAll().FirstOrDefault(s => s.NationalId.Equals(NID));
-            if (student == null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public bool ValidatePhoneDuplication(string PhoneNumber)
-        {
-            var student = StudentDAL.GetAll().FirstOrDefault(s => s.PhoneNumber.Equals(PhoneNumber));
-            return student != null;
-        }
         public bool AddStudentResult(List<Result> resultList, int userId)
-                {
+        {
                     bool isResultAdded = false;
-
                     isResultAdded = StudentDAL.isResultAdded(resultList, userId);
-
                     return isResultAdded;
-                }
-
+        }
         public List<Student> GetSortedStudentsByPoints()
         {
             List<Student> students = StudentDAL.GetStudentsWithResults();
@@ -76,7 +47,6 @@ namespace ServiceLibrary.Business_Logic
             }
             return sortedListStudents;
         }
-
         private List<Student> AssignStudentStatus(List<Student> student)
         {
             if (student != null)
@@ -135,6 +105,14 @@ namespace ServiceLibrary.Business_Logic
                 }
             }
             return totalPoints;
+        }
+        public bool DoesNidExist(string nationalId)
+        {
+            return StudentDAL.GetStudentNationalId(nationalId);
+        }
+        public bool DoesPhoneNumberExist(string phoneNumber)
+        {
+            return StudentDAL.GetStudentPhoneNumber(phoneNumber);
         }
     }
 }

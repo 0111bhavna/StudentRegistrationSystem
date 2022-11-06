@@ -17,6 +17,8 @@ namespace RepositoryLibrary.DataAccessLayer
                                                         inner join Results R on S.StudentId=R.StudentId
                                                         inner join Grade G on R.GradeId=G.GradeId
                                                         inner join Subject Sub on R.SubjectId=Sub.SubjectId";
+        private const string GetNationalIdQuery = @"select NationalId from Student where NationalId = @NationalId";
+        private const string GetPhoneNumberQuery = @"select PhoneNumber from Student where PhoneNumber=@PhoneNumber";
         private readonly IDatabaseHelper DatabaseHelper;
         private readonly IUserDAL UserDAL;
         private readonly IAddressDAL AddressDAL;
@@ -43,7 +45,6 @@ namespace RepositoryLibrary.DataAccessLayer
          public bool CreateStudent(User user)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            //string Status = "Waiting";
             int userId=UserDAL.AddUser(user, Role.student);
             parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@StudentId", userId));
@@ -152,13 +153,10 @@ namespace RepositoryLibrary.DataAccessLayer
                     subject.SubjectName= row["SubjectName"].ToString();
                     subject.SubjectId =(int) row["SubjectId"];
                     studentResult.Subject = subject;
-
                     grade.GradeId = (int)row["GradeId"];
                     grade.GradeName= row["GradeName"].ToString();
                     grade.GradeScore= (int)row["GradeScore"];
                     studentResult.Grade=grade;
-
-                   
                     studentResult.ResultId = (int)row["ResultId"];
                     results.Add(studentResult);
                     if(i==result.Rows.Count-1)
@@ -169,6 +167,28 @@ namespace RepositoryLibrary.DataAccessLayer
                 } 
             }
             return students;
+        }
+        public bool GetStudentNationalId(String nationalId)
+        {
+            bool isNationalIdDuplicate = false;
+
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@NationalId", nationalId));
+            DataTable result = DatabaseHelper.GetDataWithConditions(GetNationalIdQuery, parameters);
+            if (result.Rows.Count > 0)
+                isNationalIdDuplicate = true;
+            return isNationalIdDuplicate;
+        }
+
+        public bool GetStudentPhoneNumber(String phoneNumber)
+        {
+            bool isPhoneNumberDuplicate = false;
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@PhoneNumber", phoneNumber));
+            DataTable result = DatabaseHelper.GetDataWithConditions(GetPhoneNumberQuery, parameters);
+            if (result.Rows.Count > 0)
+                isPhoneNumberDuplicate = true;
+            return isPhoneNumberDuplicate;
         }
     }
 }

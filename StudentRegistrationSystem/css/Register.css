@@ -39,17 +39,29 @@ input {
     margin: 0.9rem 2rem;
     font-size: 1rem;
 }
-
 label {
     margin: 0 2rem;
 }
 
+#NIdErr {
+    margin: 0 2rem;
+    color: red;
+}
+
+#emailErr {
+    margin: 0 2rem;
+    color: red;
+}
+
+#PhoneNumberErr {
+    margin: 0 2rem;
+    color: red;
+}
 span {
     margin: 0 2rem;
     color: blue;
     cursor: pointer;
 }
-
 button {
     margin: 1rem;
     margin-bottom: 1.5rem;
@@ -66,13 +78,11 @@ button {
 .required:after {
     content: " *";
     color: red;
-    /* ........///Sign-Up///......... */
 }
-    p {
+p {
     text-align: center;
     font-weight: bolder;
 }
-
 .icons {
     display: flex;
     justify-content: center;
@@ -106,8 +116,6 @@ button {
         color: #fff;
         padding: 1rem;
     }
-
-/* ....///Media query///..... */
 
 @media (max-width: 501px) {
     html {

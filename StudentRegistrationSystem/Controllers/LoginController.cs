@@ -1,9 +1,8 @@
 ﻿using RepositoryLibrary.Models;
 using ServiceLibrary.Business_Logic;
-using System.CodeDom;
+using System;
 using System.Web;
 using System.Web.Mvc;
-using System;
 namespace StudentRegistrationSystem.Controllers
 {
     public static class SessionHandler
@@ -29,52 +28,7 @@ namespace StudentRegistrationSystem.Controllers
         }
     }
     public class LoginController : Controller
-
     { 
-
-        /*
-        string connectionstring = @"Data Source=L-PW02X092\SQLEXPRESS;Initial Catalog=""StudentRegistration SystemDb"";Integrated Security=True";
-        // GET: Login
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public JsonResult Authenticate(User user)
-        {
-            //user.email = "bhavnaoochit@gmail.com";
-            bool IsUserValid = false;
-            using(SqlConnection sqlcon= new SqlConnection(connectionstring))
-            {
-                sqlcon.Open();
-                string query = "select Email, Password from Users where Email=@email";
-                SqlCommand cmd=new SqlCommand(query,sqlcon);
-                cmd.Parameters.AddWithValue("@email",user.email);
-                SqlDataReader sdr=cmd.ExecuteReader();
-
-                IsUserValid = false;
-                 if (sdr.Read())
-                {
-                    DataTable table = new DataTable();
-
-                    //IsUserValid =BCrypt.Net.BCrypt.Verify(user.password);
-                    ViewData["message"] = "user logged in successfully";
-                }
-                else
-                {
-                    ViewData["message"] = "not logged in";
-                }
-                sqlcon.Close();
-            }
-            return Json(new { result = IsUserValid, url = Url.Action("Index", "User") });*/
-
         private readonly IUserBL UserBL;
         public LoginController(IUserBL userBL)
         {

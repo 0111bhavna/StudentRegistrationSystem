@@ -41,7 +41,6 @@ function summaryTable(studentSummary) {
     if (studentSummary) {
         for (var indexStudent = 0; indexStudent < studentSummary.length; indexStudent++) {
             let numResults = studentSummary[indexStudent].Results.length;
-           // alert(numResults);
             for (var index = 0; index < numResults; index++) {
                 let result = studentSummary[indexStudent].Results[index];
                 if (index == 0) {

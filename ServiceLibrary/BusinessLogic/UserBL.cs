@@ -21,6 +21,11 @@ namespace ServiceLibrary.Business_Logic
             return UserDal.AuthenticateUser(loginModel);
         }
 
+        public bool DoesEmailExist(string email)
+        {
+
+            return UserDal.GetUserByEmail(email);
+        }
 
     }
 }

@@ -1,126 +1,51 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="~/css/Register.css">
-
     <title>RegisterUser</title>
-
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-
     <script type="text/javascript" src="~/Scripts/Register.js"></script>
-
     <script type="text/javascript" src="~/Scripts/Validations.js"></script>
     <script src="https://kit.fontawesome.com/66aa7c98b3.js"></script>
-
 </head>
-<body>
-
-    <!--
-
-    <form>
-        <div class="container">
-            <h1>Register</h1>
-            <p>Please fill in this form to create an account.</p>
-            <hr>
-
-            <label for="Email"><b>Email</b></label>
-            <input type="email" placeholder="Enter Email" name="Email" onchange="EmailValidation(this);" id="Email" required>
-
-            <label for="Password"><b>Password</b></label>
-            <input type="Password" placeholder="Enter Password" id="Password" name="psw" onchange="PasswordValidation(this, Password);" required>
-
-            <label for="ConfirmPassword"><b>Confirm Password</b></label>
-            <input type="Password" placeholder="Confirm Password" name="ConfirmPassword" id="ConfirmPassword" onchange="PasswordValidation(ConfirmPassword, this);" required>
-
-            <label for="NationalId">NationalId</label>
-            <input type="text" id="NationalId" name="NationalId" onchange="NationalIdValidation(this);" placeholder="Your National ID..">
-
-            <label for="FirstName">First Name</label>
-            <input type="text" id="FirstName" name="FirstName" onchange="NameValidation(this);" placeholder="FirstName..">
-
-            <label for="Surname">Surname</label>
-            <input type="text" id="Surname" name="Surname" onchange="NameValidation(this);" placeholder="Surname..">
-
-            <label for="Street">Street</label>
-            <input type="text" id="Street" name="Street" onchange="AddressValidation(this);" placeholder="Street..">
-
-            <label for="City">City</label>
-            <input type="text" id="City" name="City" onchange="AddressValidation(this);" placeholder="City..">
-
-            <label for="Country">Country</label>
-            <input type="text" id="Country" name="Country" onchange="AddressValidation(this);" placeholder="Country..">
-
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text" id="PhoneNumber" name="phoneNumber" placeholder="Your phone number..">
-
-            <label for="DateofBirth">Date</label>
-            <input type="date" id="DateofBirth" name="DateofBirth"><br>
-
-            <label for="Guardian">Guardian Name</label>
-            <input type="text" id="GuardianName" name="Guardian" onchange="NameValidation(this)" placeholder="Guardian..">
-
-            <button type="submit" class="registerbtn" onclick="register()">Register</button>
-        </div>
-
-        <div class="container signin">
-            <p>Already have an account? <a href="#">Sign in</a>.</p>
-        </div>
-    </form>
-
-    -->
- 
+    <body>
         <div class="container">
             <form class="form-1">
                 <h1>Registration Form</h1>
-
                 <label class="required" for="Email">Email</label>
-                <input type="email" id="Email" name="Email" required>
-
+                <input type="email" id="Email" name="Email" onchange="EmailValidation(this);" required>
+                <div id="emailErr"></div>
                 <label class="required" for="Password">Password</label>
                 <input type="password" id="Password" name="psw" onchange="PasswordValidation(this, Password);" required>
-
-                <label class="required" for="ConfirmPassword">Confirm Password</label>
-                <input type="password" name="ConfirmPassword" id="ConfirmPassword" onchange="PasswordValidation(ConfirmPassword, this);" required>
-
                 <label class="required" for="NationalId">NationalId</label>
                 <input type="text" id="NationalId" name="NationalId" onchange="NationalIdValidation(this);" required>
-
+                <div id="NIdErr"></div>
                 <label class="required" for="FirstName">First Name</label>
                 <input type="text" id="FirstName" name="FirstName" onchange="FirstNameValidation(this);" required>
-
                 <label class="required" for="Surname">Surname</label>
                 <input type="text" id="Surname" name="Surname" onchange="SurnameValidation(this);" required>
-
                 <label class="required" for="Street">Street</label>
                 <input type="text" id="Street" name="Street" onchange="StreetValidation(this);" required>
-
                 <label class="required" for="City">City</label>
                 <input type="text" id="City" name="City" onchange="CityValidation(this);" required>
-
                 <label class="required" for="Country">Country</label>
                 <input type="text" id="Country" name="Country" onchange="CountryValidation(this);" required>
-
                 <label class="required" for="phoneNumber">Phone Number</label>
-                <input type="text" id="PhoneNumber" name="phoneNumber" required>
-
+                <input type="text" id="PhoneNumber" name="phoneNumber" onchange="PhoneNumberValidation(this);" required>
+                <div id="PhoneNumberErr"></div>
                 <label class="required" for="DateofBirth">Date of Birth</label>
                 <input type="date" id="DateofBirth" name="DateofBirth"><br>
-
                 <label class="required" for="Guardian">Guardian Name</label>
-                <input type="text" id="GuardianName" name="Guardian" onchange="NameValidation(this)" required>
-
+                <input type="text" id="GuardianName" name="Guardian" onchange="GuardianNameValidation(this)" required>
                 <p><button type="submit" class="registerbtn" onclick="register()">Register</button></p>
 
+                <div id="error"><span></span></div>
             </form>
-
-            </div>
-
-</body>
-    </html>
+        </div>
+    </body>
+</html>
 

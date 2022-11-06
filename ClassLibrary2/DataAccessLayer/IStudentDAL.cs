@@ -1,4 +1,5 @@
 ﻿using RepositoryLibrary.Models;
+using System;
 using System.Collections.Generic;
 namespace RepositoryLibrary.DataAccessLayer
 {
@@ -10,6 +11,10 @@ namespace RepositoryLibrary.DataAccessLayer
         bool CreateStudent(User user);
         bool isResultAdded(List<Result> listOfResults, int userId);
         List<Student> GetStudentsWithResults();
+        bool GetStudentNationalId(String nationalId);
+        bool GetStudentPhoneNumber(String phoneNumber);
+
+
     }
 }
 
