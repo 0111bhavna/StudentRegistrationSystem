@@ -33,7 +33,7 @@ namespace StudentRegistrationSystem
             container.RegisterType<IStudentManagement, StudentManagement>();
             container.RegisterType<IUserBL, UserBL>();
             container.RegisterType<IValidation, Validation>();
-            container.RegisterType<IUserManagement, UserManagement>();
+            
             
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

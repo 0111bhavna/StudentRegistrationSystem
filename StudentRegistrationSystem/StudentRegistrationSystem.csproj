@@ -129,6 +129,7 @@
     <Content Include="css\ViewSummary.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\university.jpg" />
+    <Content Include="Scripts\Admin.js" />
     <Content Include="Scripts\Application.js" />
     <Content Include="Scripts\dateCheck.js" />
     <Content Include="Scripts\loginIndex.js" />

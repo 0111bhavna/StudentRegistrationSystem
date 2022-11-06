@@ -15,7 +15,7 @@ function login() {
     var authObj = { email: emailAddress, password: password };
     sendData(authObj).then((response) => {
         if (response.result) {
-            toastr.success("Authentication Succeed. Redirecting to relevent page.....");
+            toastr.success("Successful Authentication. Redirecting to relevent page.....");
             window.location.href = response.url;
         }
         else {

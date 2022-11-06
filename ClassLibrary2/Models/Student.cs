@@ -11,7 +11,7 @@ namespace RepositoryLibrary.Models
 {
     public class Student
     {
-        public string StudentId { get; set; }
+        public int StudentId { get; set; }
         public string NationalId { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
@@ -21,11 +21,13 @@ namespace RepositoryLibrary.Models
         public DateTime DateofBirth { get; set; }
         public string GuardianName { get; set; }
         //public Result Result { get; set; }
-
         public Address Address { get; set; }
-        public int Status { get; set; }
-
-
-        public Result[] Results { get; set; }
+        public string Status { get; set; }
+        public int TotalScore { get; set; }
+        public List<Result> Results { get; set; }
+        public Student()
+        {
+            Results = new List<Result>();
+        }
     }
 }

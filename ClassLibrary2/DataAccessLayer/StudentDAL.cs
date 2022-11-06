@@ -2,9 +2,11 @@
 using RepositoryLibrary.HelperFunctions;
 using RepositoryLibrary.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace RepositoryLibrary.DataAccessLayer
 {
@@ -14,6 +16,14 @@ namespace RepositoryLibrary.DataAccessLayer
                                                     values (@StudentId,@NationalId, @FirstName,@Surname,@PhoneNumber, @DateOfBirth, @GuardianName) ";
         private const string GetStudentsQuery = @"Select [FirstName], [Surname], [NationalId],[PhoneNumber], [DateOfBirth], [GuardianName]from Student";
         private const string resultQuery = @"INSERT INTO Results ([SubjectId],[GradeId],[StudentId]) VALUES (@SubjectId,@GradeId,@StudentId)";
+
+        private const string GetAllStudentsWithResults = @"select S.Status, S.StudentId, FirstName, Surname, Sub.SubjectId, G.GradeId, SubjectName, GradeName, GradeScore, ResultId from Student as S
+                                                        inner join Results R on S.StudentId=R.StudentId
+                                                        inner join Grade G on R.GradeId=G.GradeId
+                                                        inner join Subject Sub on R.SubjectId=Sub.SubjectId";
+        
+        
+        
         private readonly IDatabaseHelper DatabaseHelper;
         private readonly IUserDAL UserDAL;
         private readonly IAddressDAL AddressDAL;
@@ -32,7 +42,7 @@ namespace RepositoryLibrary.DataAccessLayer
         {
             return new List<Student>();
         }
-        public void UpdateStatus(Student student, int status)
+        public void UpdateStatus(Student student, string status)
         {
             student.Status = status;
             Console.WriteLine("Update user status");
@@ -40,7 +50,7 @@ namespace RepositoryLibrary.DataAccessLayer
          public bool CreateStudent(User user)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            string Status = "Waiting";
+            //string Status = "Waiting";
             int userId=UserDAL.AddUser(user, Role.student);
             parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@StudentId", userId));
@@ -68,7 +78,6 @@ namespace RepositoryLibrary.DataAccessLayer
                     student.FirstName = row["FirstName"].ToString();
                     student.Surname = row["Surname"].ToString();
                     student.NationalId = row["NationalId"].ToString();
-                   // student.Address = row["address"].ToString();
                     student.PhoneNumber = row["PhoneNumber"].ToString();
                     student.DateofBirth = DateTime.Parse(row["DateOfBirth"].ToString());
                     student.GuardianName = row["GuardianName"].ToString();
@@ -108,6 +117,67 @@ namespace RepositoryLibrary.DataAccessLayer
             }
             return isResultAdded;
         }
+        public List<Student> GetStudentsWithResults()
+        {
+            List<Student> students = new List<Student>();
+            DataTable result = DatabaseHelper.QueryConditions(GetAllStudentsWithResults, null);
+            if (result.Rows.Count > 0)
+            {
+                List<int> ListStudentId = new List<int>();
+                Student student = null;
+                List<Result> results = null;
+                for (int i=0; i<result.Rows.Count; i++)
+                {
+                    DataRow row=result.Rows[i];
+                    int studentId = (int)row["StudentId"];
+                    if (!ListStudentId.Contains(studentId))
+                    {
+                        ListStudentId.Add(studentId);
+                        if (student!=null)
+                        {
+                            student.Results = results;
+                            students.Add(student);
+                        }
+                        student=new Student();
+                        results = new List<Result>();
+                    }
+                    student.StudentId = studentId;
+                    student.FirstName= row["FirstName"].ToString();
+                    student.Surname= row["Surname"].ToString();
+                    if (row["Status"]==null)
+                    {
+                        student.Status = null;
+                     }
+                    else
+                    {
+                        student.Status = row["Status"].ToString();
+                    }
+                    Result studentResult=new Result();
+                    Subject subject = new Subject();
+                    Grade grade= new Grade();   
+                    studentResult.ResultId = (int)row["ResultId"];
+                    subject.SubjectName= row["SubjectName"].ToString();
+                    subject.SubjectId =(int) row["SubjectId"];
+                    studentResult.Subject = subject;
+
+                    grade.GradeId = (int)row["GradeId"];
+                    grade.GradeName= row["GradeName"].ToString();
+                    grade.GradeScore= (int)row["GradeScore"];
+                    studentResult.Grade=grade;
+
+                   
+                    studentResult.ResultId = (int)row["ResultId"];
+                    results.Add(studentResult);
+                    if(i==result.Rows.Count-1)
+                    {
+                        student.Results = results;
+                        students.Add(student);
+                    }
+                } 
+            }
+            return students;
+        }
+
     }
 }
 

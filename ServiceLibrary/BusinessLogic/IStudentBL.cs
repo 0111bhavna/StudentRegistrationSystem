@@ -12,5 +12,7 @@ namespace ServiceLibrary.Business_Logic
         bool CreateStudent(User user);
 
         bool AddStudentResult(List<Result> result, int userId);
+
+        List<Student> GetSortedStudentsByPoints();
     }
 }

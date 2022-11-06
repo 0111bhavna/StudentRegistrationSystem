@@ -9,7 +9,7 @@ namespace RepositoryLibrary.Models
     public class Grade
     {
         public int GradeId { get; set; }
-        public char GradeName { get; set; }
+        public string GradeName { get; set; }
         public int GradeScore { get; set; }
     }
 }

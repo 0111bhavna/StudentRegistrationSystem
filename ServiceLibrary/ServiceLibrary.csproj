@@ -84,7 +84,6 @@
     <Compile Include="BusinessLogic\StudentBL.cs" />
     <Compile Include="BusinessLogic\StudentManagement.cs" />
     <Compile Include="BusinessLogic\UserBL.cs" />
-    <Compile Include="BusinessLogic\UserManagement.cs" />
     <Compile Include="BusinessLogic\Validation\IValidation.cs" />
     <Compile Include="BusinessLogic\Validation\Validation.cs" />
     <Compile Include="Class1.cs" />
