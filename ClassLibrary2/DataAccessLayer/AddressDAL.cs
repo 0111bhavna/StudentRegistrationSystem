@@ -1,14 +1,7 @@
-﻿using RepositoryLibrary.DataAccessLayer;
-using RepositoryLibrary.HelperFunctions;
+﻿using RepositoryLibrary.HelperFunctions;
 using RepositoryLibrary.Models;
-using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ClassLibrary2.DataAccessLayer
 {
     public class AddressDAL: IAddressDAL

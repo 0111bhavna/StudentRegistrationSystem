@@ -2,12 +2,9 @@
 using RepositoryLibrary.HelperFunctions;
 using RepositoryLibrary.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-
 namespace RepositoryLibrary.DataAccessLayer
 {
     public class StudentDAL : IStudentDAL
@@ -16,14 +13,10 @@ namespace RepositoryLibrary.DataAccessLayer
                                                     values (@StudentId,@NationalId, @FirstName,@Surname,@PhoneNumber, @DateOfBirth, @GuardianName) ";
         private const string GetStudentsQuery = @"Select [FirstName], [Surname], [NationalId],[PhoneNumber], [DateOfBirth], [GuardianName]from Student";
         private const string resultQuery = @"INSERT INTO Results ([SubjectId],[GradeId],[StudentId]) VALUES (@SubjectId,@GradeId,@StudentId)";
-
         private const string GetAllStudentsWithResults = @"select S.Status, S.StudentId, FirstName, Surname, Sub.SubjectId, G.GradeId, SubjectName, GradeName, GradeScore, ResultId from Student as S
                                                         inner join Results R on S.StudentId=R.StudentId
                                                         inner join Grade G on R.GradeId=G.GradeId
                                                         inner join Subject Sub on R.SubjectId=Sub.SubjectId";
-        
-        
-        
         private readonly IDatabaseHelper DatabaseHelper;
         private readonly IUserDAL UserDAL;
         private readonly IAddressDAL AddressDAL;
@@ -177,7 +170,6 @@ namespace RepositoryLibrary.DataAccessLayer
             }
             return students;
         }
-
     }
 }
 

@@ -1,24 +1,29 @@
 ﻿function EmailValidation(element) {
-    var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    
     if (element.value.length == 0) {
-        toastr.error("Email must be specified");
+        toastr.error("Invalid Email");
     }
     else if (element.value.length < 8 || element.value.length > 50) {
-        toastr.error("Email must be between 8 to 50 characters");
+        toastr.error("Email is not in correct format");
     }
-    else if (!emailRegex.test(element)) {
-        toastr.error("Email is in Invalid Format");
-    }
+   
 }
 function PasswordValidation(element) {
     if (element.value.length < 8 || element.value.length > 25) {
         toastr.error("password must be specified");
     }
 }
-function NameValidation(element) {
+function FirstNameValidation(element) {
     if (element.value.length < 2 || element.value.length > 100) {
         var attributeName = element.getAttribute("name");
-        toastr.error("Should be between 2 and 100 characters");
+        toastr.error("Firstname should be between 2 and 100 characters");
+    }
+}
+
+function SurnameValidation(element) {
+    if (element.value.length < 2 || element.value.length > 100) {
+        var attributeName = element.getAttribute("name");
+        toastr.error("Surname should be between 2 and 100 characters");
     }
 }
 function NationalIdValidation(element) {
@@ -32,8 +37,18 @@ function NationalIdValidation(element) {
         toastr.error("National Id should be between 9 and 15 characters");
     }
 }
-function AddressValidation(element) {
+function StreetValidation(element) {
     if ((element.value.length)< 2 || element.value.length > 30) {
-        toastr.error("should be between 2 and 15 characters");
+        toastr.error("Street should be between 2 and 15 characters");
+    }
+}
+function CityValidation(element) {
+    if ((element.value.length) < 2 || element.value.length > 30) {
+        toastr.error("City should be between 2 and 15 characters");
+    }
+}
+function CountryValidation(element) {
+    if ((element.value.length) < 2 || element.value.length > 30) {
+        toastr.error("Invalid Country Name");
     }
 }

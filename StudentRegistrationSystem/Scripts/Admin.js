@@ -35,9 +35,6 @@ function getData(){
     });
 
 }
-
-
-
 function summaryTable(studentSummary) {
     var table = $("table#StudentTable");
     var tbody = "";
@@ -52,8 +49,8 @@ function summaryTable(studentSummary) {
                             
                             <td rowspan="${numResults}">${studentSummary[indexStudent].FirstName}</td>
                             <td rowspan="${numResults}">${studentSummary[indexStudent].Surname}</td>
-                            <td> ${result.SubjectName}</td >
-                            <td> ${result.Grade}</td>
+                            <td> ${result.Subject.SubjectName}</td >
+                            <td> ${result.Grade.GradeName}</td>
 
                             <td rowspan="${numResults}">${studentSummary[indexStudent].TotalScore}</td>
                             <td rowspan="${numResults}">${studentSummary[indexStudent].Status}</td>
@@ -62,14 +59,13 @@ function summaryTable(studentSummary) {
                 else {
                     
                     tbody += `<tr>
-                              <td> ${result.SubjectName}</td >
-                              <td>${result.Grade}</td>
+                              <td> ${result.Subject.SubjectName}</td >
+                              <td>${result.Grade.GradeName}</td>
                               </tr>`;
                 }
             }
         }
     }
-
     else {
         tbody = "<tr colspan='7'>No students found</tr>";
     }
