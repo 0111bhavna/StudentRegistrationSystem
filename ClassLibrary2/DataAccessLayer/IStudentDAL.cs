@@ -13,8 +13,6 @@ namespace RepositoryLibrary.DataAccessLayer
         List<Student> GetStudentsWithResults();
         bool GetStudentNationalId(String nationalId);
         bool GetStudentPhoneNumber(String phoneNumber);
-
-
     }
 }
 

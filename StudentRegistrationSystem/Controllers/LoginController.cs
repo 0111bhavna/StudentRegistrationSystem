@@ -60,8 +60,12 @@ namespace StudentRegistrationSystem.Controllers
                 url = _url
             });
         }
+
+        [HttpPost]
         public ActionResult LogOff()
         {
+            this.Session.Clear();
+            this.Session.Abandon();
             return RedirectToAction("Login", "Login");
         }
     }

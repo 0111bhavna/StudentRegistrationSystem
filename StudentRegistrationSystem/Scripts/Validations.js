@@ -18,8 +18,8 @@
     }
 }
 function PasswordValidation(element) {
-    if (element.value.length < 8 || element.value.length > 25) {
-        toastr.error("password must be between 8 and 25 characters");
+    if (element.value.length < 5 || element.value.length > 25) {
+        toastr.error("password must be between 5 and 25 characters");
     }
 }
 function FirstNameValidation(element) {

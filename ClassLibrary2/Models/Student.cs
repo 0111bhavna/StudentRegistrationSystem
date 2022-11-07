@@ -20,7 +20,6 @@ namespace RepositoryLibrary.Models
         public string PhoneNumber { get; set; }
         public DateTime DateofBirth { get; set; }
         public string GuardianName { get; set; }
-        //public Result Result { get; set; }
         public Address Address { get; set; }
         public string Status { get; set; }
         public int TotalScore { get; set; }

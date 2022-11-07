@@ -170,7 +170,6 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\HomePage\Index.cshtml" />
-    <Content Include="Views\RegisterCourses\Index.cshtml" />
     <Content Include="Views\Logout\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -181,7 +180,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ComparePassword\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary2\RepositoryLibrary.csproj">
